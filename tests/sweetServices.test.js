@@ -317,7 +317,9 @@ const result = service.searchSweets({ category: "Nut" }); // Partial category
 expect(result.length).toBe(2); // Should return 2 sweets with "Nut-Based"
 });
 
-test("should fail: expecting wrong sweet when searching by exact name", () => {
+
+
+test("should pass: returns correct sweet when searched by exact name", () => {
   const sweet1 = { id: 9701, name: "Gulab Jamun", category: "Milk-Based", price: 20, quantity: 30 };
   const sweet2 = { id: 9702, name: "Jalebi", category: "Flour-Based", price: 25, quantity: 25 };
 
@@ -327,11 +329,23 @@ test("should fail: expecting wrong sweet when searching by exact name", () => {
   const result = service.searchSweets({ name: "Gulab Jamun" });
 
   expect(result.length).toBe(1);
-  expect(result[0].name).toBe("Jalebi"); 
+  expect(result[0].name).toBe("Gulab Jamun"); 
 });
 
+test("❌ FAIL: returns wrong sweet when filtering by price range", () => {
+const sweet1 = { id: 9801, name: "Milk Cake", category: "Milk-Based", price: 30, quantity: 20 };
+const sweet2 = { id: 9802, name: "Peda", category: "Milk-Based", price: 40, quantity: 25 };
+const sweet3 = { id: 9803, name: "Kaju Katli", category: "Nut-Based", price: 60, quantity: 15 };
 
+service.addSweet(sweet1);
+service.addSweet(sweet2);
+service.addSweet(sweet3);
 
+const result = service.searchSweets({ minPrice: 30, maxPrice: 50 });
+
+expect(result.length).toBe(1);
+expect(result[0].name).toBe("Kaju Katli"); // ❌ wrong: Kaju Katli is ₹60 and should NOT be returned
+});
 
 
 });
