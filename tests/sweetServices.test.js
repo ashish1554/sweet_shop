@@ -287,4 +287,20 @@ expect(result.length).toBe(1);
 expect(result[0].name).toBe("Kalakand");
 });
 
+test("should throw error if minPrice is not a number", () => {
+const sweet = {
+id: 9010,
+name: "Barfi",
+category: "Milk-Based",
+price: 30,
+quantity: 10,
+};
+
+service.addSweet(sweet);
+
+expect(() => {
+service.searchSweets({ minPrice: "twenty" }); 
+}).toThrow("Price filter must be a number");
+});
+
 });
