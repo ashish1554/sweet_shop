@@ -338,6 +338,22 @@ test("PASS: filters sweets correctly by minPrice and maxPrice", () => {
   expect(names).toEqual(["Milk Cake", "Peda"]);
 });
 
+test("should reduce quantity on successful purchase", () => {
+  const sweet = {
+    id: 10001,
+    name: "Peda",
+    category: "Milk-Based",
+    price: 12,
+    quantity: 30,
+  };
+
+  service.addSweet(sweet);
+
+  service.purchaseSweet(10001, 5);
+
+  const updated = service.getAllSweets().find(s => s.id === 10001);
+  expect(updated.quantity).toBe(25);
+});
 
 
 });
