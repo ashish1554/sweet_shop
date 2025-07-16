@@ -38,6 +38,16 @@ deleteSweet(id) {
   this.sweets.splice(index, 1);
 }
 
+searchSweets({ name, category, minPrice, maxPrice }) {
+return this.sweets.filter(sweet => {
+if (name && sweet.name !== name) return false;
+if (category && sweet.category !== category) return false;
+if (minPrice && sweet.price < minPrice) return false;
+if (maxPrice && sweet.price > maxPrice) return false;
+return true;
+});
+}
+
 }
 
 module.exports = SweetService;
