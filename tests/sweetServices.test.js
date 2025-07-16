@@ -45,4 +45,17 @@ test("should not allow adding sweets with duplicate IDs", () => {
   expect(() => service.addSweet(sweet2)).toThrow("Sweet ID must be unique");
 });
 
+test("should throw error if sweet object is missing required fields", () => {
+  const incompleteSweet = {
+    id: 1002,
+    name: "Milk Cake",
+    price: 25,
+    quantity: 10,
+    // category is missing
+  };
+
+  expect(() => service.addSweet(incompleteSweet)).toThrow("Invalid sweet object");
+});
+
+
 });
