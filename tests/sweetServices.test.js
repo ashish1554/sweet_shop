@@ -69,13 +69,70 @@ test("should delete a sweet by ID", () => {
   };
 
   service.addSweet(sweet);
-  service.deleteSweet(2001); // 🔴 deleteSweet() not implemented yet
+  service.deleteSweet(2001); 
 
   const sweets = service.getAllSweets();
   expect(sweets.length).toBe(0);
 });
 
 
+test("should throw error when deleting a non-existent sweet", () => {
+  expect(() => service.deleteSweet(9999)).toThrow("Sweet not found");
+});
+
+test("should delete correct sweet from multiple sweets", () => {
+  const sweet1 = {
+    id: 3001,
+    name: "Peda",
+    category: "Milk-Based",
+    price: 12,
+    quantity: 30,
+  };
+
+  const sweet2 = {
+    id: 3002,
+    name: "Ladoo",
+    category: "Flour-Based",
+    price: 18,
+    quantity: 40,
+  };
+
+  const sweet3 = {
+    id: 3003,
+    name: "Barfi",
+    category: "Milk-Based",
+    price: 22,
+    quantity: 10,
+  };
+
+  service.addSweet(sweet1);
+  service.addSweet(sweet2);
+  service.addSweet(sweet3);
+
+  service.deleteSweet(3002); // Delete Ladoo
+
+  const sweets = service.getAllSweets();
+
+  expect(sweets.length).toBe(2);
+  const ids = sweets.map(s => s.id);
+  expect(ids).toContain(3001);
+  expect(ids).toContain(3003);
+  expect(ids).not.toContain(3002);
+});
+
+test("should throw error if sweet ID passed to delete is not a number", () => {
+  const sweet = {
+    id: 3001,
+    name: "Peda",
+    category: "Milk-Based",
+    price: 12,
+    quantity: 30,
+  };
+
+  service.addSweet(sweet);
+
+  expect(() => service.deleteSweet("3001")).toThrow("Sweet ID must be a number");
+});
 
 
 });
