@@ -19,9 +19,11 @@ addSweet(sweet) {
   this.sweets.push(sweet);
 }
 
-  getAllSweets() {
-    return this.sweets;
-  }
+ 
+getAllSweets() {
+  return [...this.sweets];
+}
+
 
 deleteSweet(id) {
   if (typeof id !== "number") {
