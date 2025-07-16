@@ -21,7 +21,7 @@ addSweet(sweet) {
 
  
 getAllSweets() {
-  return [...this.sweets];
+  return this.sweets.map(sweet => ({ ...sweet }));
 }
 
 
