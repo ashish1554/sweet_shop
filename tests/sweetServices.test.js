@@ -237,6 +237,7 @@ test("should return deep clones of sweets to prevent external mutation", () => {
   expect(original.quantity).toBe(20);
 });
 
+
 test("should return sweets that match the exact name", () => {
 const sweet1 = {
 id: 9001,
@@ -315,5 +316,22 @@ service.addSweet(sweet3);
 const result = service.searchSweets({ category: "Nut" }); // Partial category
 expect(result.length).toBe(2); // Should return 2 sweets with "Nut-Based"
 });
+
+test("should fail: expecting wrong sweet when searching by exact name", () => {
+  const sweet1 = { id: 9701, name: "Gulab Jamun", category: "Milk-Based", price: 20, quantity: 30 };
+  const sweet2 = { id: 9702, name: "Jalebi", category: "Flour-Based", price: 25, quantity: 25 };
+
+  service.addSweet(sweet1);
+  service.addSweet(sweet2);
+
+  const result = service.searchSweets({ name: "Gulab Jamun" });
+
+  expect(result.length).toBe(1);
+  expect(result[0].name).toBe("Jalebi"); 
+});
+
+
+
+
 
 });
