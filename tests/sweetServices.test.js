@@ -154,5 +154,41 @@ test("should return a new array (not internal reference) to prevent external mut
 });
 
 
+test("should return all sweets in the order they were added", () => {
+  const sweet1 = {
+    id: 5001,
+    name: "Kaju Katli",
+    category: "Nut-Based",
+    price: 50,
+    quantity: 20,
+  };
+
+  const sweet2 = {
+    id: 5002,
+    name: "Gulab Jamun",
+    category: "Milk-Based",
+    price: 10,
+    quantity: 30,
+  };
+
+  const sweet3 = {
+    id: 5003,
+    name: "Jalebi",
+    category: "Flour-Based",
+    price: 15,
+    quantity: 25,
+  };
+
+  service.addSweet(sweet1);
+  service.addSweet(sweet2);
+  service.addSweet(sweet3);
+
+  const result = service.getAllSweets();
+
+  expect(result[0].id).toBe(5001);
+  expect(result[1].id).toBe(5002);
+  expect(result[2].id).toBe(5003);
+});
+
 
 });
