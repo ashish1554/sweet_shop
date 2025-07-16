@@ -135,4 +135,24 @@ test("should throw error if sweet ID passed to delete is not a number", () => {
 });
 
 
+test("should return a new array (not internal reference) to prevent external mutation", () => {
+  const sweet = {
+    id: 4001,
+    name: "Cham Cham",
+    category: "Milk-Based",
+    price: 18,
+    quantity: 12,
+  };
+
+  service.addSweet(sweet);
+
+  const sweets = service.getAllSweets();
+  sweets.pop(); // try to mutate it
+
+  // Internal inventory should still be intact
+  expect(service.getAllSweets().length).toBe(1);
+});
+
+
+
 });
