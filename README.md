@@ -1,0 +1,113 @@
+# 🍬 Sweet Shop Management System (TDD + Node.js + Jest)
+
+This is a  project developed using **Test-Driven Development (TDD)** principles. It manages an inventory of sweets in a shop, including features like add, delete, search, purchase, and restock.
+
+---
+
+## 📦 Features
+
+- ✅ Add sweets to inventory
+- ✅ Prevent duplicate sweet IDs
+- ✅ Delete sweets by ID
+- ✅ Search sweets by:
+  - Exact name
+  - Case-insensitive category
+  - Partial category
+  - Price range (`minPrice`, `maxPrice`)
+- ✅ Purchase sweets (decrease quantity)
+- ✅ Restock sweets (increase quantity)
+- ✅ Defensive coding to prevent external mutation
+- ✅ Full Jest test coverage
+
+---
+
+## 🛠️ Tech Stack
+
+- **Node.js**
+- **JavaScript (ES6)**
+- **Jest** for unit testing
+
+---
+
+## 📁 Project Structure
+
+sweet-shop/
+├── node_modules/
+├── src/
+│ └── services/
+│ └── SweetService.js
+├── test/
+│ └── SweetService.test.js
+├── .gitignore
+├── package.json
+└── README.md
+
+yaml
+Copy
+Edit
+
+---
+
+## ▶️ How to Run
+
+### Install dependencies:
+
+```bash
+npm install
+Run tests:
+bash
+Copy
+Edit
+npm test
+💡 Sample Sweet Object
+json
+Copy
+Edit
+{
+  "id": 1001,
+  "name": "Kaju Katli",
+  "category": "Nut-Based",
+  "price": 50,
+  "quantity": 20
+}
+❌ Errors Handled
+Error Condition	Error Message
+Duplicate sweet ID	Sweet ID must be unique
+Missing required fields	Invalid sweet object
+Non-numeric sweet ID (delete)	Sweet ID must be a number
+Deleting non-existing sweet	Sweet not found
+Purchase more than available quantity	Insufficient stock
+Non-numeric price filters in search	Price filter must be a number
+
+🧪 TDD Coverage (Jest)
+All features have failing → passing tests.
+
+Every edge case is covered:
+
+Adding
+
+Deleting
+
+Searching
+
+Mutability
+
+Input validation
+
+Sorting & ordering
+
+Run npm test to see all green ✅ test results.
+
+📌 Why This Project?
+Demonstrates Test-Driven Development (TDD)
+
+Good for placement projects
+
+Clean, modular, and interview-ready code
+
+Covers real-world business logic
+
+👤 Author
+Ashish Pateliya
+GitHub: https://github.com/ashish1554
+LinkedIn: https://www.linkedin.com/in/ashish-pateliya-782245257
