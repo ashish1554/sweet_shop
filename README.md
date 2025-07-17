@@ -1,4 +1,4 @@
-# 🍬 Sweet Shop Management System (TDD + Node.js + Jest)
+# 🍬 Sweet Shop Management System (TDD + JavaScript + Jest)
 
 This is a  project developed using **Test-Driven Development (TDD)** principles. It manages an inventory of sweets in a shop, including features like add, delete, search, purchase, and restock.
 
@@ -23,7 +23,6 @@ This is a  project developed using **Test-Driven Development (TDD)** principles.
 
 ## 🛠️ Tech Stack
 
-- **Node.js**
 - **JavaScript (ES6)**
 - **Jest** for unit testing
 
@@ -31,20 +30,21 @@ This is a  project developed using **Test-Driven Development (TDD)** principles.
 
 ## 📁 Project Structure
 
-sweet-shop/
+TDD/
 ├── node_modules/
 ├── src/
-│ └── services/
-│ └── SweetService.js
-├── test/
-│ └── SweetService.test.js
+│ ├── models/
+│ │ └── Sweet.js # (Optional) Sweet data model (if separated)
+│ ├── services/
+│ │ └── SweetService.js # Business logic layer
+│ └── index.js # Entry point (optional)
+├── tests/
+│ └── sweetServices.test.js # All Jest test cases
 ├── .gitignore
 ├── package.json
+├── package-lock.json
 └── README.md
 
-yaml
-Copy
-Edit
 
 ---
 
@@ -55,14 +55,11 @@ Edit
 ```bash
 npm install
 Run tests:
-bash
-Copy
-Edit
 npm test
+
+
 💡 Sample Sweet Object
-json
-Copy
-Edit
+json:
 {
   "id": 1001,
   "name": "Kaju Katli",
@@ -70,6 +67,7 @@ Edit
   "price": 50,
   "quantity": 20
 }
+
 ❌ Errors Handled
 Error Condition	Error Message
 Duplicate sweet ID	Sweet ID must be unique
